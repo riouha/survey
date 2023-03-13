@@ -34,11 +34,11 @@ export class Question {
   @Column()
   public order: number;
 
-  @Column({ type: 'enum', enum: ['Q1', 'Q2'] })
-  public section: 'Q1' | 'Q2';
+  @Column({ nullable: true, type: 'enum', enum: ['Q1', 'Q2'] })
+  public section?: 'Q1' | 'Q2';
 
-  @Column({ type: 'enum', enum: ['General', 'LifeStyle', 'Male', 'Female'] })
-  public group: 'General' | 'LifeStyle' | 'Male' | 'Female';
+  @Column({ nullable: true, type: 'enum', enum: ['General', 'LifeStyle', 'Male', 'Female'] })
+  public group?: 'General' | 'LifeStyle' | 'Male' | 'Female';
 
   @Column({ nullable: true, type: 'varchar', array: true })
   public tags?: string[];
@@ -51,10 +51,10 @@ export class Question {
   @ManyToOne(() => Question)
   parent?: Question;
 
-  @Column({})
+  @Column({ nullable: true })
   surveyId: number;
   @ManyToOne(() => Survey, (survey) => survey.questions)
-  survey: Survey;
+  survey?: Survey;
 
   @CreateDateColumn({ type: 'timestamp' })
   createDate: Date;
